@@ -1,5 +1,12 @@
 library(tidyverse)
-arquivo = ("A_Canção_do_Dragão.pdf")
+library(pdftools)
+library(stringr)
+library(NLP)
+library(tm)
+library(RColorBrewer)
+
+
+arquivo <- ("C:/Users/Thiago/Documents/demo/O alienista.pdf")
 txt = pdf_text(arquivo)
 cat(txt)
 
@@ -50,6 +57,11 @@ myNames[k] = "mining"
 d = data.frame(word=myNames, freq=v)
 
 # Gráfico
+palavra <- d$word
+frequencia <- d$freq
+bd <- data.frame(palavra,frequencia)
+gr <- bd[1:10,]
+
 graficoFreq = ggplot(gr, aes(x=palavra, y=frequencia, fill=palavra))+
   geom_bar(stat = "identity")+ guides(fill=FALSE)
 graficoFreq
